@@ -39,9 +39,11 @@ const Character = () => {
 
         const data = await response.json();
         setCharacters(data.results);
+        setError(null);
       } catch (error) {
         console.error("Erro ao buscar dados: ", error);
         setError("Falha ao carregar dados...");
+        setCharacters([]);
       } finally {
         setLoading(false);
       }
@@ -52,9 +54,9 @@ const Character = () => {
   return (
     <div>
       <Search setSearchCharacter={setSearchCharacter} />
+
       {loading && <p>Carregando dados...</p>}
-      {!loading &&  error ? <p>{error}</p> :<CharacterCards characters={characters} />}
-      
+      {error ? <p>{error}</p> : <CharacterCards characters={characters} />}
     </div>
   );
 };
