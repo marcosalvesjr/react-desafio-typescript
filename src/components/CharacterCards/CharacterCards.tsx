@@ -22,12 +22,9 @@ type CardsProps = {
   characters: CharacterType[];
 };
 
-const CharacterCards: React.FC<CardsProps> = ({
-  characters,
-}) => {
+const CharacterCards: React.FC<CardsProps> = ({ characters }) => {
   return (
     <>
-
       <div className="flex flex-wrap">
         {characters.map((character) => (
           <div
@@ -52,7 +49,13 @@ const CharacterCards: React.FC<CardsProps> = ({
               {/*content*/}
               <h1>{character.name}</h1>
               <p>{character.location.name}</p>
-              <p>{character.status}</p>
+              <p>
+                {character.status === "Alive"
+                  ? "🟢 Vivo"
+                  : character.status === "Dead"
+                  ? "🔴 Morto"
+                  : "⚪ Desconhecido"}
+              </p>
             </div>
             {/* fecha content*/}
           </div>

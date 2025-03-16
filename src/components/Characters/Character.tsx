@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CharacterCards from "../CharacterCards/CharacterCards";
 import Search from "../Search/Search";
+import Filters from "../Filters/Filters";
 
 type CharacterType = {
   id: number;
@@ -25,14 +26,18 @@ const Character = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [searchCharacter, setSearchCharacter] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(`${url}?name=${searchCharacter}`);
+        const response = await fetch(
+          `${url}?page=${pageNumber}&name=${searchCharacter}&status=${status}`
+        );
         if (!response.ok) {
           throw new Error("Erro ao buscar os dados!");
         }
@@ -49,12 +54,12 @@ const Character = () => {
       }
     };
     fetchData();
-  }, [searchCharacter]);
+  }, [searchCharacter, status]);
 
   return (
     <div>
       <Search setSearchCharacter={setSearchCharacter} />
-
+      <Filters setPageNumber={setPageNumber} setStatus={setStatus} />
       {loading && <p>Carregando dados...</p>}
       {error ? <p>{error}</p> : <CharacterCards characters={characters} />}
     </div>
