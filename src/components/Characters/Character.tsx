@@ -45,6 +45,8 @@ const Character = () => {
         }
 
         const data = await response.json();
+        //const dataRandom = [...data.results].sort(() => Math.random() - 0.5);
+        //setCharacters(dataRandom);
         setCharacters(data.results);
         setError(null);
       } catch (error) {
