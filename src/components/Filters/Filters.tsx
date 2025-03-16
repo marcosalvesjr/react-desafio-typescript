@@ -4,9 +4,11 @@ type FiltersProps = {
   setStatus: (status: string) => void;
   setPageNumber: (pageNumber: number) => void;
   setGender: (gender: string) => void;
+  setSpecies: (species: string) => void;
 };
 
 const Filters: React.FC<FiltersProps> = ({
+  setSpecies,
   setGender,
   setPageNumber,
   setStatus,
@@ -42,6 +44,28 @@ const Filters: React.FC<FiltersProps> = ({
           <option value="male">Macho</option>
           <option value="female">Fêmea</option>
           <option value="unknown">Desconhecido</option>
+        </select>
+        <label htmlFor="specie">Espécie</label>
+        <select
+          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
+          name="specie"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setSpecies(e.target.value);
+            setPageNumber(1);
+          }}
+        >
+          <option value="">Selecione</option>
+          <option value="Human">Humano</option>
+          <option value="Alien">Alienígena </option>
+          <option value="Humanoid">Humanoide</option>
+          <option value="Poopybutthole">Poopybutthole</option>
+          <option value="Mythological">Mitologico</option>
+          <option value="Unknown">Desconhecido</option>
+          <option value="Animal">Animal</option>
+          <option value="Disease">Doença</option>
+          <option value="Robot">Robo</option>
+          <option value="Cronenberg">Cronenberg</option>
+          <option value="Planet">Planeta</option>
         </select>
       </form>
     </div>

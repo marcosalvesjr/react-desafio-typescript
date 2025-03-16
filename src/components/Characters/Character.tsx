@@ -30,6 +30,7 @@ const Character = () => {
   const [searchCharacter, setSearchCharacter] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [gender, setGender] = useState<string>("");
+  const [species, setSpecies] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +38,7 @@ const Character = () => {
 
       try {
         const response = await fetch(
-          `${url}?page=${pageNumber}&name=${searchCharacter}&status=${status}&gender=${gender}`
+          `${url}?page=${pageNumber}&name=${searchCharacter}&status=${status}&gender=${gender}&species=${species}`
         );
         if (!response.ok) {
           throw new Error("Erro ao buscar os dados!");
@@ -55,12 +56,13 @@ const Character = () => {
       }
     };
     fetchData();
-  }, [searchCharacter, status, gender]);
+  }, [searchCharacter, status, gender, species]);
 
   return (
     <div>
       <Search setSearchCharacter={setSearchCharacter} />
       <Filters
+        setSpecies={setSpecies}
         setGender={setGender}
         setPageNumber={setPageNumber}
         setStatus={setStatus}
