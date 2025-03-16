@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
-type Props = {};
+import CharacterCards from "../CharacterCards/CharacterCards";
+import Search from "../Search/Search";
 
 type CharacterType = {
   id: number;
@@ -17,20 +17,22 @@ type CharacterType = {
     name: string;
     url: string;
   };
+  image: string;
 };
 
-const Character = (props: Props) => {
+const Character = () => {
   const url = "https://rickandmortyapi.com/api/character";
   const [characters, setCharacters] = useState<CharacterType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchCharacter, setSearchCharacter] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
       try {
-        const response = await fetch(url);
+        const response = await fetch(`${url}?name=${searchCharacter}`);
         if (!response.ok) {
           throw new Error("Erro ao buscar os dados!");
         }
@@ -45,18 +47,14 @@ const Character = (props: Props) => {
       }
     };
     fetchData();
-  }, []);
+  }, [searchCharacter]);
 
   return (
     <div>
+      <Search setSearchCharacter={setSearchCharacter} />
       {loading && <p>Carregando dados...</p>}
-      {error && <p>{error}</p>}
-
-      {characters.map((character) => (
-        <div key={character.id}>
-          <p>{character.name}</p>
-        </div>
-      ))}
+      {!loading &&  error ? <p>{error}</p> :<CharacterCards characters={characters} />}
+      
     </div>
   );
 };
