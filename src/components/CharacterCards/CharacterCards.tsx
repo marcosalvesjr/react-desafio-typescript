@@ -26,7 +26,7 @@ const CharacterCards: React.FC<CardsProps> = ({ characters }) => {
   return (
     <>
       <div className="flex flex-wrap">
-        {characters.map((character) => (
+        {characters.slice(0, 48).map((character) => (
           <div
             className="flex flex-row gap-4 border-1 border-red-500 w-90"
             key={character.id}
