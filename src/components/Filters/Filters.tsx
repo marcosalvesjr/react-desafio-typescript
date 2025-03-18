@@ -5,6 +5,7 @@ type FiltersProps = {
   setPageNumber: (pageNumber: number) => void;
   setGender: (gender: string) => void;
   setSpecies: (species: string) => void;
+  setCharactersToShow: (charactersToShow: number) => void;
 };
 
 const Filters: React.FC<FiltersProps> = ({
@@ -12,6 +13,7 @@ const Filters: React.FC<FiltersProps> = ({
   setGender,
   setPageNumber,
   setStatus,
+  setCharactersToShow,
 }) => {
   return (
     <div>
@@ -66,6 +68,18 @@ const Filters: React.FC<FiltersProps> = ({
           <option value="Robot">Robo</option>
           <option value="Cronenberg">Cronenberg</option>
           <option value="Planet">Planeta</option>
+        </select>
+        <label htmlFor="charactersToShow">Exibir: </label>
+        <select
+          name="charactersToShow"
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setCharactersToShow(Number(e.target.value));
+            setPageNumber(1);
+          }}
+        >
+          <option value="5">5 personagens</option>
+          <option value="10">10 personagens</option>
+          <option value="20">20 personagens</option>
         </select>
       </form>
     </div>

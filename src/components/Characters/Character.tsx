@@ -31,6 +31,7 @@ const Character = () => {
   const [status, setStatus] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [species, setSpecies] = useState<string>("");
+  const [charactersToShow, setCharactersToShow] = useState<number>(48);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +69,7 @@ const Character = () => {
         setGender={setGender}
         setPageNumber={setPageNumber}
         setStatus={setStatus}
+        setCharactersToShow={setCharactersToShow}
       />
       {loading && <p>Carregando dados...</p>}
       {error ? <p>{error}</p> : <CharacterCards characters={characters} />}
