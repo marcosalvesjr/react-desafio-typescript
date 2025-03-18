@@ -20,13 +20,17 @@ type CharacterType = {
 
 type CardsProps = {
   characters: CharacterType[];
+  charactersToShow: number;
 };
 
-const CharacterCards: React.FC<CardsProps> = ({ characters }) => {
+const CharacterCards: React.FC<CardsProps> = ({
+  characters,
+  charactersToShow,
+}) => {
   return (
     <>
       <div className="flex flex-wrap">
-        {characters.slice(0, 48).map((character) => (
+        {characters.slice(0, charactersToShow).map((character) => (
           <div
             className="flex flex-row gap-4 border-1 border-red-500 w-90"
             key={character.id}

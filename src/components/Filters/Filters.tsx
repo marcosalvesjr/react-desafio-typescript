@@ -16,7 +16,7 @@ const Filters: React.FC<FiltersProps> = ({
   setCharactersToShow,
 }) => {
   return (
-    <div>
+    <div className="mb-4">
       <h1>Filtros</h1>
       <form>
         <label htmlFor="status">Status: </label>
@@ -71,6 +71,7 @@ const Filters: React.FC<FiltersProps> = ({
         </select>
         <label htmlFor="charactersToShow">Exibir: </label>
         <select
+          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
           name="charactersToShow"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCharactersToShow(Number(e.target.value));
