@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CharacterCards from "../CharacterCards/CharacterCards";
 import Search from "../Search/Search";
 import Filters from "../Filters/Filters";
+import { useSearchParams } from "react-router-dom";
 
 type CharacterType = {
   id: number;
@@ -26,12 +27,71 @@ const Character = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [searchCharacter, setSearchCharacter] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
-  const [species, setSpecies] = useState<string>("");
-  const [charactersToShow, setCharactersToShow] = useState<number>(48);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  //FILTROS
+  const [pageNumber, setPageNumber] = useState<number>(
+    Number(searchParams.get("page") || 1)
+  );
+  const [searchCharacter, setSearchCharacter] = useState<string>(
+    searchParams.get("search") || ""
+  );
+  const [status, setStatus] = useState<string>(
+    searchParams.get("status") || ""
+  );
+  const [gender, setGender] = useState<string>(
+    searchParams.get("gender") || ""
+  );
+  const [species, setSpecies] = useState<string>(
+    searchParams.get("species") || ""
+  );
+  const [charactersToShow, setCharactersToShow] = useState<number>(
+    Number(searchParams.get("charactertoshow") || 48)
+  );
+
+  useEffect(() => {
+    // Não sobrescrever os parâmetros toda vez, manter os existentes
+    const updatedSearchParams = new URLSearchParams(searchParams);
+
+    if (searchCharacter) {
+      updatedSearchParams.set("search", searchCharacter);
+    } else {
+      updatedSearchParams.delete("search");
+    }
+
+    if (pageNumber) {
+      updatedSearchParams.set("pagenumber", pageNumber.toString());
+    } else {
+      updatedSearchParams.delete("pagenumber");
+    }
+
+    if (status) {
+      updatedSearchParams.set("status", status);
+    } else {
+      updatedSearchParams.delete("status");
+    }
+
+    if (gender) {
+      updatedSearchParams.set("gender", gender);
+    } else {
+      updatedSearchParams.delete("gender");
+    }
+
+    if (species) {
+      updatedSearchParams.set("species", species);
+    } else {
+      updatedSearchParams.delete("species");
+    }
+
+    if (charactersToShow) {
+      updatedSearchParams.set("charactersToShow", charactersToShow.toString());
+    } else {
+      updatedSearchParams.delete("charactersToShow");
+    }
+
+    // Atualizar a URL com os parâmetros modificados
+    setSearchParams(updatedSearchParams);
+  }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +119,7 @@ const Character = () => {
       }
     };
     fetchData();
-  }, [searchCharacter, status, gender, species]);
+  }, [searchCharacter, status, gender, species, pageNumber]);
 
   return (
     <div>

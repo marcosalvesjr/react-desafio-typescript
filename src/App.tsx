@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import Character from "./components/Characters/Character";
 
 function App() {
@@ -6,8 +7,9 @@ function App() {
       <h1 className="font-bold">
         Olá <span className="text-amber-900">Rick And Morty!</span>
       </h1>
-      
-      <Character />
+      <BrowserRouter>
+        <Character />
+      </BrowserRouter>
     </>
   );
 }
