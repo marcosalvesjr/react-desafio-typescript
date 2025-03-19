@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterCards from "../CharacterCards/CharacterCards";
 import Search from "../Search/Search";
 import Filters from "../Filters/Filters";
@@ -50,46 +50,23 @@ const Character = () => {
   );
 
   useEffect(() => {
-    // Não sobrescrever os parâmetros toda vez, manter os existentes
     const updatedSearchParams = new URLSearchParams(searchParams);
 
-    if (searchCharacter) {
-      updatedSearchParams.set("search", searchCharacter);
-    } else {
-      updatedSearchParams.delete("search");
-    }
+    const params: Record<string, string | number> = {
+      search: searchCharacter,
+      pagenumber: pageNumber,
+      status,
+      gender,
+      species,
+      charactersToShow,
+    };
 
-    if (pageNumber) {
-      updatedSearchParams.set("pagenumber", pageNumber.toString());
-    } else {
-      updatedSearchParams.delete("pagenumber");
-    }
-
-    if (status) {
-      updatedSearchParams.set("status", status);
-    } else {
-      updatedSearchParams.delete("status");
-    }
-
-    if (gender) {
-      updatedSearchParams.set("gender", gender);
-    } else {
-      updatedSearchParams.delete("gender");
-    }
-
-    if (species) {
-      updatedSearchParams.set("species", species);
-    } else {
-      updatedSearchParams.delete("species");
-    }
-
-    if (charactersToShow) {
-      updatedSearchParams.set("charactersToShow", charactersToShow.toString());
-    } else {
-      updatedSearchParams.delete("charactersToShow");
-    }
-
-    // Atualizar a URL com os parâmetros modificados
+    Object.entries(params).forEach(([key, value]) => {
+      value
+        ? updatedSearchParams.set(key, value.toString())
+        : updatedSearchParams.delete(key);
+    });
+    
     setSearchParams(updatedSearchParams);
   }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
 
