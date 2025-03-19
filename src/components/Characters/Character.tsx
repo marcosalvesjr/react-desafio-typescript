@@ -72,7 +72,14 @@ const Character = () => {
         setCharactersToShow={setCharactersToShow}
       />
       {loading && <p>Carregando dados...</p>}
-      {error ? <p>{error}</p> : <CharacterCards characters={characters} />}
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <CharacterCards
+          charactersToShow={charactersToShow}
+          characters={characters}
+        />
+      )}
     </div>
   );
 };
