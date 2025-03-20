@@ -3,6 +3,14 @@ import CharacterCards from "../CharacterCards/CharacterCards";
 import Search from "../Search/Search";
 import Filters from "../Filters/Filters";
 import { useSearchParams } from "react-router-dom";
+import Pagination from "../Pagination/Pagination";
+
+type InfoType = {
+  count: number;
+  pages: number;
+  next: string;
+  prev: boolean;
+};
 
 type CharacterType = {
   id: number;
@@ -28,10 +36,11 @@ const Character = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [info, setInfo] = useState<InfoType[]>([]);
 
   //FILTROS
   const [pageNumber, setPageNumber] = useState<number>(
-    Number(searchParams.get("page") || 1)
+    Number(searchParams.get("page") || 42)
   );
   const [searchCharacter, setSearchCharacter] = useState<string>(
     searchParams.get("search") || ""
@@ -46,7 +55,7 @@ const Character = () => {
     searchParams.get("species") || ""
   );
   const [charactersToShow, setCharactersToShow] = useState<number>(
-    Number(searchParams.get("charactertoshow") || 48)
+    Number(searchParams.get("charactertoshow") || 20)
   );
 
   useEffect(() => {
@@ -66,7 +75,7 @@ const Character = () => {
         ? updatedSearchParams.set(key, value.toString())
         : updatedSearchParams.delete(key);
     });
-    
+
     setSearchParams(updatedSearchParams);
   }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
 
@@ -86,6 +95,7 @@ const Character = () => {
         //const dataRandom = [...data.results].sort(() => Math.random() - 0.5);
         //setCharacters(dataRandom);
         setCharacters(data.results);
+        setInfo(data.info);
         setError(null);
       } catch (error) {
         console.error("Erro ao buscar dados: ", error);
@@ -117,6 +127,7 @@ const Character = () => {
           characters={characters}
         />
       )}
+      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
     </div>
   );
 };
