@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CharacterModal from "../CharacterModal/CharacterModal";
 
 type CharacterType = {
@@ -31,12 +31,21 @@ const CharacterCards: React.FC<CardsProps> = ({
   const [open, setOpen] = useState<boolean>(false);
   const [selectedCharacter, setSelectedCharacter] =
     useState<CharacterType | null>(null);
+//desativar e ativar scroll
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden"; 
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [open]);
+
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-center gap-4 ">
         {characters.slice(0, charactersToShow).map((character) => (
           <div
-            className="flex flex-row gap-4 border-1 border-red-500 w-90"
+            className="flex flex-col gap-1 border-1 border-red-500 w-75  rounded-lg bg-slate-100"
             key={character.id}
           >
             <div>
@@ -46,33 +55,38 @@ const CharacterCards: React.FC<CardsProps> = ({
                 href={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`}
               >
                 <img
-                  className="h-50"
+                  className="h-full w-full object-cover rounded-t-lg"
                   src={character.image}
                   alt="imagem do personagem"
                 ></img>
               </a>
             </div>
             {/* fecha imagem*/}
-            <div>
+            <div className="p-2">
               {/*content*/}
-              <h1>{character.name}</h1>
-              <p>{character.location.name}</p>
-              <p>
+              <h1
+                onClick={() => {
+                  setSelectedCharacter(character);
+                  setOpen(!open);
+                }}
+                className="text-4xl font-bold hover:text-orange-500 cursor-pointer"
+              >
+                {character.name}
+              </h1>
+
+              <p className="font-medium mb-2">
                 {character.status === "Alive"
                   ? "🟢 Vivo"
                   : character.status === "Dead"
                   ? "🔴 Morto"
-                  : "⚪ Desconhecido"}
+                  : "⚪ Desconhecido"}{" "}
+                | {character.gender}
               </p>
-              <button
-                onClick={() => {
-                  setSelectedCharacter(character);
-                  setOpen(!open);
-                  console.log(open);
-                }}
-              >
-                Saiba Mais
-              </button>
+
+              <p className="flex flex-col">
+                <span className="font-extralight">Última localização:</span>
+                <span className="font-medium">{character.location.name}</span>
+              </p>
             </div>
             {/* fecha content*/}
           </div>

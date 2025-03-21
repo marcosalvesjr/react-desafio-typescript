@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from "react";
 
 type SearchProps = {
   setSearchCharacter: (characterName: string) => void;
-  
 };
 
 const Search: React.FC<SearchProps> = ({ setSearchCharacter }) => {
@@ -21,17 +20,14 @@ const Search: React.FC<SearchProps> = ({ setSearchCharacter }) => {
     <form onSubmit={handleSubmit} className="my-4">
       <label htmlFor="searchCharacter">
         <input
-          className="px-4 py-1 border-1 border-slate-300 w-90 rounded-s-full"
+          className="px-2 py-1 border-1 border-slate-300 w-60 rounded-s-full"
           type="text"
           placeholder="Digite o nome do personagem"
           name="searchCharacter"
           onChange={handleChange}
-          
         />
       </label>
-      <button className="text-slate-600 font-light bg-slate-300 px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full">
-        Buscar
-      </button>
+      <button className="bi bi-search text-slate-600 font-light bg-slate-300 px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"></button>
     </form>
   );
 };

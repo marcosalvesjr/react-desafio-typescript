@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import Character from "./components/Characters/Character";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
   return (

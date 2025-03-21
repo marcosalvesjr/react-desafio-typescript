@@ -17,46 +17,47 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <div className="mb-4">
-      <h1>Filtros</h1>
-      <form>
-        <label htmlFor="status">Status: </label>
+      <h1 className="text-center">Filtros</h1>
+      <form className="flex flex-col">
         <select
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
+          className=" text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
           name="status"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setStatus(e.target.value);
             setPageNumber(1);
           }}
         >
-          <option value="">Selecionar</option>
+          <option value="">--Status--</option>
           <option value="Alive">Vivo</option>
           <option value="Dead">Morto</option>
           <option value="unknown">Desconhecido</option>
         </select>
-        <label htmlFor="gender">Gênero: </label>
+
         <select
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setGender(e.target.value);
             setPageNumber(1);
           }}
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
+          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
           name="gender"
         >
-          <option value="">Selecionar</option>
+          <option value="">--Gênero--</option>
           <option value="male">Macho</option>
           <option value="female">Fêmea</option>
           <option value="unknown">Desconhecido</option>
         </select>
-        <label htmlFor="specie">Espécie</label>
+
         <select
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
+          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
           name="specie"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setSpecies(e.target.value);
             setPageNumber(1);
           }}
         >
-          <option value="">Selecione</option>
+          <option selected disabled>
+            --Espécie--
+          </option>
           <option value="Human">Humano</option>
           <option value="Alien">Alienígena </option>
           <option value="Humanoid">Humanoide</option>
@@ -69,17 +70,17 @@ const Filters: React.FC<FiltersProps> = ({
           <option value="Cronenberg">Cronenberg</option>
           <option value="Planet">Planeta</option>
         </select>
-        <label htmlFor="charactersToShow">Exibir: </label>
+
         <select
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"
+          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
           name="charactersToShow"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCharactersToShow(Number(e.target.value));
           }}
         >
-          <option value="5">5 personagens</option>
-          <option value="10">10 personagens</option>
-          <option value="20">20 personagens</option>
+          <option value="5">Exibir 5 personagens</option>
+          <option value="10">Exibir 10 personagens</option>
+          <option value="20">Exibir 20 personagens</option>
         </select>
       </form>
     </div>

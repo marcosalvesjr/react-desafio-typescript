@@ -29,15 +29,22 @@ const CharacterModal = ({ open, setOpen, selectedCharacter }: Props) => {
   if (!open || !selectedCharacter) return null;
 
   return (
-    <div onClick={openOrClose} className="modal">
-      <div className="modal-content">
-        <button onClick={openOrClose}>Fechar</button>
-
-        <img src={selectedCharacter.image} alt={selectedCharacter.name} />
-        <h1>{selectedCharacter.name}</h1>
-        <p>Gênero: {selectedCharacter.gender}</p>
-        <p>Origem: {selectedCharacter.origin.name}</p>
-        <p>Localização: {selectedCharacter.location.name}</p>
+    <div
+      onClick={openOrClose}
+      className="fixed inset-0 flex items-center justify-center bg-black opacity-90 z-50"
+    >
+      <div className="bg-slate-200 w-50  rounded-lg shadow-lg opacity-100 z-51">
+        <img
+          className="w-450 rounded-t-md object-cover "
+          src={selectedCharacter.image}
+          alt={selectedCharacter.name}
+        />
+        <div className="p-2">
+          <h1 className="mb-2 font-bold">{selectedCharacter.name}</h1>
+          <p>Gênero: {selectedCharacter.gender}</p>
+          <p>Origem: {selectedCharacter.origin.name}</p>
+          <p>Localização: {selectedCharacter.location.name}</p>
+        </div>
       </div>
     </div>
   );

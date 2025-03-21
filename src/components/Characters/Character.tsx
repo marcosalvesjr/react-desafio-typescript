@@ -8,8 +8,8 @@ import Pagination from "../Pagination/Pagination";
 type InfoType = {
   count: number;
   pages: number;
-  next: string|null;
-  prev: string|null;
+  next: string | null;
+  prev: string | null;
 };
 
 type CharacterType = {
@@ -36,7 +36,7 @@ const Character = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [info, setInfo] = useState<InfoType|null>(null);
+  const [info, setInfo] = useState<InfoType | null>(null);
 
   //FILTROS
   const [pageNumber, setPageNumber] = useState<number>(
@@ -57,7 +57,7 @@ const Character = () => {
   const [charactersToShow, setCharactersToShow] = useState<number>(
     Number(searchParams.get("charactertoshow") || 20)
   );
-//UPDATE PARAMS
+  //UPDATE PARAMS
   useEffect(() => {
     const updatedSearchParams = new URLSearchParams(searchParams);
 
@@ -78,7 +78,7 @@ const Character = () => {
 
     setSearchParams(updatedSearchParams);
   }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
-//CHAMANDO API
+  //CHAMANDO API
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -109,7 +109,7 @@ const Character = () => {
   }, [searchCharacter, status, gender, species, pageNumber]);
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       <Search setSearchCharacter={setSearchCharacter} />
       <Filters
         setSpecies={setSpecies}
@@ -130,7 +130,7 @@ const Character = () => {
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        info={info||{ count: 0, pages: 0, next: null, prev: null }}
+        info={info || { count: 0, pages: 0, next: null, prev: null }}
       />
     </div>
   );
