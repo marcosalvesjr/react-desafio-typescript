@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import CharacterModal from "../CharacterModal/CharacterModal";
 
 type CharacterType = {
   id: number;
@@ -27,6 +28,9 @@ const CharacterCards: React.FC<CardsProps> = ({
   characters,
   charactersToShow,
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectedCharacter, setSelectedCharacter] =
+    useState<CharacterType | null>(null);
   return (
     <>
       <div className="flex flex-wrap">
@@ -60,11 +64,25 @@ const CharacterCards: React.FC<CardsProps> = ({
                   ? "🔴 Morto"
                   : "⚪ Desconhecido"}
               </p>
+              <button
+                onClick={() => {
+                  setSelectedCharacter(character);
+                  setOpen(!open);
+                  console.log(open);
+                }}
+              >
+                Saiba Mais
+              </button>
             </div>
             {/* fecha content*/}
           </div>
         ))}
       </div>
+      <CharacterModal
+        open={open}
+        setOpen={setOpen}
+        selectedCharacter={selectedCharacter}
+      />
     </>
   );
 };
