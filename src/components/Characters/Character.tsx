@@ -8,8 +8,8 @@ import Pagination from "../Pagination/Pagination";
 type InfoType = {
   count: number;
   pages: number;
-  next: string;
-  prev: boolean;
+  next: string|null;
+  prev: string|null;
 };
 
 type CharacterType = {
@@ -36,7 +36,7 @@ const Character = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [info, setInfo] = useState<InfoType[]>([]);
+  const [info, setInfo] = useState<InfoType|null>(null);
 
   //FILTROS
   const [pageNumber, setPageNumber] = useState<number>(
@@ -127,7 +127,11 @@ const Character = () => {
           characters={characters}
         />
       )}
-      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        info={info||{ count: 0, pages: 0, next: null, prev: null }}
+      />
     </div>
   );
 };
