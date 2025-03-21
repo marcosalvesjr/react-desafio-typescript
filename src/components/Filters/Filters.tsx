@@ -75,7 +75,6 @@ const Filters: React.FC<FiltersProps> = ({
           name="charactersToShow"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCharactersToShow(Number(e.target.value));
-            setPageNumber(1);
           }}
         >
           <option value="5">5 personagens</option>

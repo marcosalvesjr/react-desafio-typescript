@@ -1,4 +1,3 @@
-
 type InfoType = {
   count: number; // Total de itens
   pages: number; // Total de páginas

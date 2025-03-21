@@ -57,7 +57,7 @@ const Character = () => {
   const [charactersToShow, setCharactersToShow] = useState<number>(
     Number(searchParams.get("charactertoshow") || 20)
   );
-
+//UPDATE PARAMS
   useEffect(() => {
     const updatedSearchParams = new URLSearchParams(searchParams);
 
@@ -78,7 +78,7 @@ const Character = () => {
 
     setSearchParams(updatedSearchParams);
   }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
-
+//CHAMANDO API
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
