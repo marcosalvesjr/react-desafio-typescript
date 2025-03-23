@@ -1,6 +1,7 @@
 import React from "react";
 
 type FiltersProps = {
+  setSearch: (status: string) => void;
   setStatus: (status: string) => void;
   setPageNumber: (pageNumber: number) => void;
   setGender: (gender: string) => void;
@@ -14,13 +15,24 @@ const Filters: React.FC<FiltersProps> = ({
   setPageNumber,
   setStatus,
   setCharactersToShow,
+  setSearch,
 }) => {
+  const cleanFilters = () => {
+    setSearch("");
+    setPageNumber(1);
+    setCharactersToShow(20);
+    setGender("");
+    setStatus("");
+    setSpecies("");
+  };
   return (
-    <div className="mb-4">
-      <h1 className="text-center">Filtros</h1>
-      <form className="flex flex-col">
+    <div className="mb-4 flex flex-col">
+      <h1 className="text-slate-600 font-bold text-xl sm:text-2xl lg:text-3xl text-center mb-2">
+        Filtros
+      </h1>
+      <form className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-4">
         <select
-          className=" text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
+          className="cursor-pointer text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full transition-all hover:border-slate-500"
           name="status"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setStatus(e.target.value);
@@ -38,7 +50,7 @@ const Filters: React.FC<FiltersProps> = ({
             setGender(e.target.value);
             setPageNumber(1);
           }}
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
+          className="cursor-pointer text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full transition-all hover:border-slate-500"
           name="gender"
         >
           <option value="">--Gênero--</option>
@@ -48,7 +60,7 @@ const Filters: React.FC<FiltersProps> = ({
         </select>
 
         <select
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
+          className="cursor-pointer text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full transition-all hover:border-slate-500"
           name="specie"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setSpecies(e.target.value);
@@ -72,7 +84,7 @@ const Filters: React.FC<FiltersProps> = ({
         </select>
 
         <select
-          className="text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full"
+          className="cursor-pointer text-slate-600 font-light px-4 py-1 border-1 border-slate-300 w-auto rounded-full transition-all hover:border-slate-500"
           name="charactersToShow"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setCharactersToShow(Number(e.target.value));
@@ -83,6 +95,12 @@ const Filters: React.FC<FiltersProps> = ({
           <option value="20">Exibir 20 personagens</option>
         </select>
       </form>
+      <button
+        className="cursor-pointer bg-slate-300 hover:bg-slate-400 text-white font-bold p-2 rounded-full mt-4 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-slate-300"
+        onClick={cleanFilters}
+      >
+        Limpar filtros
+      </button>
     </div>
   );
 };

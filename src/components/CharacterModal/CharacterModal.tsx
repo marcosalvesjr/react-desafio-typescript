@@ -31,19 +31,30 @@ const CharacterModal = ({ open, setOpen, selectedCharacter }: Props) => {
   return (
     <div
       onClick={openOrClose}
-      className="fixed inset-0 flex items-center justify-center bg-black opacity-90 z-50"
+      className="fixed inset-0 flex items-center justify-center bg-black/90 z-50"
     >
-      <div className="bg-slate-200 w-50  rounded-lg shadow-lg opacity-100 z-51">
+      <div className="bg-slate-200 w-50  rounded-lg shadow-lg">
         <img
           className="w-450 rounded-t-md object-cover "
           src={selectedCharacter.image}
           alt={selectedCharacter.name}
         />
         <div className="p-2">
-          <h1 className="mb-2 font-bold">{selectedCharacter.name}</h1>
-          <p>Gênero: {selectedCharacter.gender}</p>
-          <p>Origem: {selectedCharacter.origin.name}</p>
-          <p>Localização: {selectedCharacter.location.name}</p>
+          <h1 className="mb-1 font-bold">{selectedCharacter.name}</h1>
+          <p className="text-xs font-extralight">
+            Gênero:{" "}
+            <span className="font-medium">{selectedCharacter.gender}</span>
+          </p>
+          <p className="text-xs font-extralight">
+            Origem:{" "}
+            <span className="font-medium">{selectedCharacter.origin.name}</span>
+          </p>
+          <p className="text-xs font-extralight">
+            Localização:{" "}
+            <span className="font-medium">
+              {selectedCharacter.location.name}
+            </span>
+          </p>
         </div>
       </div>
     </div>

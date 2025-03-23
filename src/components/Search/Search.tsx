@@ -20,14 +20,14 @@ const Search: React.FC<SearchProps> = ({ setSearchCharacter }) => {
     <form onSubmit={handleSubmit} className="my-4">
       <label htmlFor="searchCharacter">
         <input
-          className="px-2 py-1 border-1 border-slate-300 w-60 rounded-s-full"
+          className="px-2 py-1 border-1 border-slate-300 w-60 sm:w-90  rounded-s-full focus:outline-slate-400 focus:ring-none"
           type="text"
           placeholder="Digite o nome do personagem"
           name="searchCharacter"
           onChange={handleChange}
         />
       </label>
-      <button className="bi bi-search text-slate-600 font-light bg-slate-300 px-4 py-1 border-1 border-slate-300 w-auto rounded-e-full"></button>
+      <button className="bi bi-search font-light bg-slate-300 hover:bg-slate-400 text-white px-4 py-1  border-1 border-slate-300 w-auto rounded-e-full cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-slate-300"></button>
     </form>
   );
 };

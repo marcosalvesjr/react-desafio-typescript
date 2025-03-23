@@ -31,10 +31,10 @@ const CharacterCards: React.FC<CardsProps> = ({
   const [open, setOpen] = useState<boolean>(false);
   const [selectedCharacter, setSelectedCharacter] =
     useState<CharacterType | null>(null);
-//desativar e ativar scroll
+  //desativar e ativar scroll
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden"; 
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
@@ -42,10 +42,10 @@ const CharacterCards: React.FC<CardsProps> = ({
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-4 ">
         {characters.slice(0, charactersToShow).map((character) => (
           <div
-            className="flex flex-col gap-1 border-1 border-red-500 w-75  rounded-lg bg-slate-100"
+            className="flex flex-col gap-1 border-2 border-slate-200 w-75  rounded-lg bg-slate-200"
             key={character.id}
           >
             <div>

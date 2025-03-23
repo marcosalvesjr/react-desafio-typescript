@@ -40,7 +40,7 @@ const Character = () => {
 
   //FILTROS
   const [pageNumber, setPageNumber] = useState<number>(
-    Number(searchParams.get("page") || 42)
+    Number(searchParams.get("page") || 1)
   );
   const [searchCharacter, setSearchCharacter] = useState<string>(
     searchParams.get("search") || ""
@@ -112,6 +112,7 @@ const Character = () => {
     <div className="flex flex-col justify-center items-center">
       <Search setSearchCharacter={setSearchCharacter} />
       <Filters
+        setSearch={setSearchCharacter}
         setSpecies={setSpecies}
         setGender={setGender}
         setPageNumber={setPageNumber}

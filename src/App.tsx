@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function App() {
   return (
     <>
-      <h1 className="font-bold">
+      <h1 className="font-bold text-center">
         Olá <span className="text-amber-900">Rick And Morty!</span>
       </h1>
       <BrowserRouter>
