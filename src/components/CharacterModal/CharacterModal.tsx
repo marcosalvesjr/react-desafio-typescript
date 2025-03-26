@@ -23,6 +23,8 @@ type Props = {
 };
 
 const CharacterModal = ({ open, setOpen, selectedCharacter }: Props) => {
+  const mapGender = { Male: "Macho", Female: "Fêmea", unknown: "Desconhecido" };
+
   const openOrClose = () => {
     setOpen(!open);
   };
@@ -33,23 +35,27 @@ const CharacterModal = ({ open, setOpen, selectedCharacter }: Props) => {
       onClick={openOrClose}
       className="fixed inset-0 flex items-center justify-center bg-black/90 z-50"
     >
-      <div className="bg-slate-200 w-50  rounded-lg shadow-lg">
+      <div className="bg-slate-200 w-65 sm:w-80  rounded-lg shadow-lg">
         <img
           className="w-450 rounded-t-md object-cover "
           src={selectedCharacter.image}
           alt={selectedCharacter.name}
         />
-        <div className="p-2">
-          <h1 className="mb-1 font-bold">{selectedCharacter.name}</h1>
-          <p className="text-xs font-extralight">
+        <div className="p-5">
+          <h1 className="mb-1 font-bold sm:text-3xl sm:mb-2">
+            {selectedCharacter.name}
+          </h1>
+          <p className="text-xs font-extralight sm:text-2xl">
             Gênero:{" "}
-            <span className="font-medium">{selectedCharacter.gender}</span>
+            <span className="font-medium">
+              {mapGender[selectedCharacter.gender as keyof typeof mapGender]}
+            </span>
           </p>
-          <p className="text-xs font-extralight">
+          <p className="text-xs font-extralight sm:text-2xl">
             Origem:{" "}
             <span className="font-medium">{selectedCharacter.origin.name}</span>
           </p>
-          <p className="text-xs font-extralight">
+          <p className="text-xs font-extralight sm:text-2xl">
             Localização:{" "}
             <span className="font-medium">
               {selectedCharacter.location.name}

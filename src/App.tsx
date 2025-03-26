@@ -5,8 +5,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function App() {
   return (
     <>
-      <h1 className="font-bold text-center">
-        Olá <span className="text-amber-900">Rick And Morty!</span>
+      <h1 className="flex flex-col items-center justify-center sm:flex-row  mt-3 text-7xl font-bold">
+        Ricki<span className="text-slate-500">Pedia</span>
       </h1>
       <BrowserRouter>
         <Character />

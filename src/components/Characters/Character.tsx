@@ -110,7 +110,10 @@ const Character = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <Search setSearchCharacter={setSearchCharacter} />
+      <Search
+        setPageNumber={setPageNumber}
+        setSearchCharacter={setSearchCharacter}
+      />
       <Filters
         setSearch={setSearchCharacter}
         setSpecies={setSpecies}

@@ -92,11 +92,13 @@ const Filters: React.FC<FiltersProps> = ({
         >
           <option value="5">Exibir 5 personagens</option>
           <option value="10">Exibir 10 personagens</option>
-          <option value="20">Exibir 20 personagens</option>
+          <option selected value="20">
+            Exibir 20 personagens
+          </option>
         </select>
       </form>
       <button
-        className="cursor-pointer bg-slate-300 hover:bg-slate-400 text-white font-bold p-2 rounded-full mt-4 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-slate-300"
+        className="cursor-pointer bg-slate-500 hover:bg-slate-600 text-white font-bold p-2 rounded-full mt-4 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-slate-300"
         onClick={cleanFilters}
       >
         Limpar filtros

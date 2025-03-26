@@ -80,7 +80,12 @@ const CharacterCards: React.FC<CardsProps> = ({
                   : character.status === "Dead"
                   ? "🔴 Morto"
                   : "⚪ Desconhecido"}{" "}
-                | {character.gender}
+                |{" "}
+                {character.gender === "Female"
+                  ? "Fêmea"
+                  : character.gender === "Male"
+                  ? "Macho"
+                  : "Desconhecido"}
               </p>
 
               <p className="flex flex-col">
