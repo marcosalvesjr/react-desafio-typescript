@@ -126,10 +126,12 @@ const Character = () => {
       {error ? (
         <p>{error}</p>
       ) : (
-        <CharacterCards
-          charactersToShow={charactersToShow}
-          characters={characters}
-        />
+        !loading && (
+          <CharacterCards
+            charactersToShow={charactersToShow}
+            characters={characters}
+          />
+        )
       )}
       <Pagination
         pageNumber={pageNumber}
