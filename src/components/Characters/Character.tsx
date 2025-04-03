@@ -78,6 +78,13 @@ const Character = () => {
 
     setSearchParams(updatedSearchParams);
   }, [searchCharacter, charactersToShow, gender, species, pageNumber, status]);
+
+  //atualiza pageNumber e charactersToShow através da querystring
+  useEffect(() => {
+    setPageNumber(Number(searchParams.get("pagenumber")) || 1);
+    setCharactersToShow(Number(searchParams.get("charactersToShow")) || 20);
+  }, [searchParams]);
+
   //CHAMANDO API
   useEffect(() => {
     const fetchData = async () => {
@@ -115,9 +122,9 @@ const Character = () => {
         setSearchCharacter={setSearchCharacter}
       />
       <Filters
-      gender={gender}
-      species={species}
-      characterToShow={charactersToShow}
+        gender={gender}
+        species={species}
+        characterToShow={charactersToShow}
         status={status}
         setSearch={setSearchCharacter}
         setSpecies={setSpecies}

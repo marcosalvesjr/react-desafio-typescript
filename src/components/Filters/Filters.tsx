@@ -64,8 +64,8 @@ const Filters: React.FC<FiltersProps> = ({
           name="gender"
         >
           <option defaultValue="">--Gênero--</option>
-          <option value="male">Macho</option>
-          <option value="female">Fêmea</option>
+          <option value="Male">Macho</option>
+          <option value="Female">Fêmea</option>
           <option value="unknown">Desconhecido</option>
         </select>
 
