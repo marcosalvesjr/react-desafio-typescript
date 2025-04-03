@@ -115,6 +115,10 @@ const Character = () => {
         setSearchCharacter={setSearchCharacter}
       />
       <Filters
+      gender={gender}
+      species={species}
+      characterToShow={charactersToShow}
+        status={status}
         setSearch={setSearchCharacter}
         setSpecies={setSpecies}
         setGender={setGender}

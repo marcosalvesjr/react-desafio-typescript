@@ -15,6 +15,7 @@ const Search: React.FC<SearchProps> = ({
     e.preventDefault();
     setSearchCharacter(characterName);
     setPageNumber(1);
+    setCharacterName("");
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ const Search: React.FC<SearchProps> = ({
     <form onSubmit={handleSubmit} className="my-4">
       <label htmlFor="searchCharacter">
         <input
+          value={characterName}
           className="px-3 py-3 border-1 border-slate-300 w-60 sm:w-90  rounded-s-full focus:outline-slate-400 focus:ring-none"
           type="text"
           placeholder="Digite o nome do personagem"
